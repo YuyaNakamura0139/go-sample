@@ -5,16 +5,28 @@ import (
 	"math"
 )
 
-func pow(x, n, lim float64) float64 {
-	if v := math.Pow(x, n); v < lim {
-		return v
+func Sqrt(x float64) float64 {
+	z := 1.0
+
+	for i := 1; i <= 10; i++ {
+		z -= (z*z - x) / (2 * z)
+
+		count := i
+		countString := "回目の結果"
+		result := z
+		fmt.Println(count, countString, result)
+
+		if math.Sqrt(x) == z {
+			fmt.Println("clear!")
+			break
+		}
 	}
-	return lim
+
+	return z
 }
 
 func main() {
-	fmt.Println(
-		pow(3, 2, 10),
-		pow(3, 3, 20),
-	)
+	var num float64 = 2
+	fmt.Println(Sqrt(num))
+	fmt.Println(math.Sqrt(num))
 }
